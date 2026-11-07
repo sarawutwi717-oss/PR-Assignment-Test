@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model PRDocument {
+  id              String   @id
+  prNumber        String   @unique
+  department      String
+  requesterName   String
+  subtotalCents   BigInt
+  vatCents        BigInt
+  grandTotalCents BigInt
+  status          String
+  createdAt       DateTime @default(now())
+  rejectReason    String?
+  items           PRItem[]
+
+  @@index([status])
+}
+
+model PRItem {
+  id              String     @id
+  prId            String
+  name            String
+  quantity        Int
+  unitPriceCents  BigInt
+  totalPriceCents BigInt
+  pr              PRDocument @relation(fields: [prId], references: [id], onDelete: Cascade)
+
+  @@index([prId])
+}
+
+model PRNumberSequence {
+  date         String @id
+  lastSequence Int
+}
+
+model PRIdSequence {
+  key          String @id
+  lastSequence Int
+}
+
+model PRItemIdSequence {
+  key          String @id
+  lastSequence Int
+}
+
+model PRActivityLog {
+  id         String   @id
+  prId       String
+  prNumber   String
+  actorRole  String
+  action     String
+  oldData    String?
+  newData    String?
+  fromStatus String?
+  toStatus   String?
+  reason     String?
+  createdAt  DateTime @default(now())
+
+  @@index([prId, createdAt])
+}
+
+model PRActivityLogIdSequence {
+  key          String @id
+  lastSequence Int
+}
