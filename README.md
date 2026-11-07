@@ -119,8 +119,14 @@ npm run db:seed    # เติมข้อมูลตัวอย่างเ�
 - ใช้ SQLite เป็นฐานข้อมูลในเครื่องเพื่อให้ติดตั้งและทดลองได้โดยไม่ต้องตั้งค่า database server เพิ่มเติม และข้อมูลตัวอย่างจะถูกเพิ่มเฉพาะเมื่อยังไม่มี PR ในฐานข้อมูล
 - ตาราง `PRActivityLog` เก็บประวัติการสร้าง แก้ไข ลบ และเปลี่ยนสถานะ PR เช่น role ผู้ทำรายการ (`REQUESTER`/`APPROVER`), action, สถานะก่อน/หลัง, เหตุผล Reject (ถ้ามี), เวลา และ snapshots JSON ใน `oldData`/`newData` ค่า snapshot ที่ไม่มีในเหตุการณ์นั้นเป็น `NULL` ประวัติยังคงอยู่หลังลบ PR และอ่านได้จาก `GET /api/pr/{id}/history`
 
-### 3. ER diagram 
-(<docs/screenshots/Diagrams/3.ER diagram.pdf>)
- 
-### 4. State diagram
-(<docs/screenshots/Diagrams/4.State diagram.pdf>)
+### 3. ER Diagram
+
+![ER Diagram](<docs/screenshots/Diagrams/3.ER diagram.png>)
+
+[เปิดไฟล์ ER Diagram ฉบับ PDF](<docs/screenshots/Diagrams/3.ER diagram.pdf>)
+
+### 4. State Diagram
+
+![State Diagram ของสถานะ PR](<docs/screenshots/Diagrams/4.State diagram.png>)
+
+[เปิดไฟล์ State Diagram ฉบับ PDF](<docs/screenshots/Diagrams/4.State diagram.pdf>)
